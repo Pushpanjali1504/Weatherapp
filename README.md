@@ -81,4 +81,47 @@ Your WeatherApp will open in your browser.
 
 WeatherApp uses the following services:
 
-- [Open-Meteo Weather API](https://
+- [Open-Meteo Weather API](https://open-meteo.com/)
+- [Open-Meteo Geocoding API](https://open-meteo.com/en/docs/geocoding-api)
+- [Open-Meteo Air Quality API](https://open-meteo.com/en/docs/air-quality-api)
+- [Leaflet Maps](https://leafletjs.com/)
+- [OpenStreetMap](https://www.openstreetmap.org/)
+
+## 🎯 Project Objectives
+
+1. To develop an interactive weather forecasting application.
+2. To provide real-time weather information for different cities.
+3. To monitor air quality through live data.
+4. To visualize weather conditions using interactive charts.
+5. To provide a simple and attractive user interface.
+
+## 🔮 Future Enhancements
+
+- Weather alerts and notifications.
+- Detailed pollution analysis.
+- Historical weather data visualization.
+- Weather-based recommendations.
+- Secure user authentication using a backend.
+- Additional weather analytics.
+
+## 👩‍💻 Project Details
+
+**Project Name:** WeatherApp – Smart Weather Forecasting & Air Quality Monitoring System
+
+**Project Type:** B.Tech Academic Project
+
+**Domain:** Web Development
+
+**Frontend:** HTML, CSS, JavaScript
+
+**Developer:** Pushpanjali
+
+## 📌 Conclusion
+
+WeatherApp demonstrates the integration of modern web technologies and weather APIs to develop an interactive weather monitoring platform. It provides useful weather forecasts, air quality updates, location-based services, and graphical visualizations through a responsive dashboard.
+
+---
+
+⭐ If you like this project, consider giving this repository a star!
+
+**Made with ❤️ using HTML, CSS & JavaScript.**
