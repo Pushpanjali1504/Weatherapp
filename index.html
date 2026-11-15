@@ -1,0 +1,201 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WeatherWise | Smart Weather Dashboard</title>
+
+  <link rel="stylesheet"
+    href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+</head>
+<body>
+
+  <!-- LOGIN PAGE -->
+  <section id="loginPage" class="login-page">
+    <div class="login-card">
+      <div class="logo">☀️</div>
+      <p class="eyebrow">SMART WEATHER EXPERIENCE</p>
+      <h1>WeatherWise</h1>
+      <p class="muted">Your weather, your world.</p>
+
+      <form id="loginForm">
+        <label>Username</label>
+        <input id="username" type="text"
+          placeholder="Enter username" required>
+
+        <label>Password</label>
+        <input id="password" type="password"
+          placeholder="Enter password" required>
+
+        <p id="loginError" class="error"></p>
+        <button class="primary-btn" type="submit">
+          Login to Dashboard →
+        </button>
+      </form>
+
+      <div class="login-hint">
+        Demo username: <b>admin</b><br>
+        Demo password: <b>weather123</b>
+      </div>
+    </div>
+  </section>
+
+  <!-- MAIN DASHBOARD -->
+  <main id="dashboard" class="dashboard hidden">
+
+    <header class="topbar">
+      <div class="brand">
+        <span class="brand-icon">☀️</span>
+        <div>
+          <h2>WeatherWise</h2>
+          <small>Smart Weather & Air Quality</small>
+        </div>
+      </div>
+
+      <div class="header-actions">
+        <button id="themeBtn" class="icon-btn" title="Change theme">🌙</button>
+        <button id="logoutBtn" class="logout-btn">Logout ↗</button>
+      </div>
+    </header>
+
+    <section class="welcome">
+      <div>
+        <p class="eyebrow">YOUR PERSONAL WEATHER STATION</p>
+        <h1>Explore the weather.</h1>
+        <p class="muted">Stay informed. Plan smarter. Breathe better.</p>
+      </div>
+      <div class="live-pill"><span></span> LIVE WEATHER</div>
+    </section>
+
+    <!-- SEARCH -->
+    <section class="search-area">
+      <div class="search-box">
+        <span>🔎</span>
+        <input id="cityInput" type="text"
+          placeholder="Search city, e.g. Lucknow">
+        <button id="searchBtn">Search</button>
+      </div>
+      <button id="locationBtn" class="location-btn">
+        📍 Use My Location
+      </button>
+    </section>
+
+    <p id="status" class="status">Loading weather information...</p>
+
+    <!-- CURRENT WEATHER -->
+    <section class="main-weather">
+      <div class="weather-left">
+        <p class="eyebrow" id="placeName">CURRENT LOCATION</p>
+        <h2 id="weatherDescription">Loading...</h2>
+        <div class="temperature-line">
+          <span id="temperature">--°</span>
+          <span id="weatherIcon">🌤️</span>
+        </div>
+        <p id="feelsLike" class="muted">Feels like --°</p>
+        <p id="currentDate" class="muted"></p>
+      </div>
+
+      <div class="weather-right">
+        <div class="mini-stat">
+          <span>💧</span>
+          <div><small>Humidity</small><b id="humidity">--%</b></div>
+        </div>
+        <div class="mini-stat">
+          <span>💨</span>
+          <div><small>Wind speed</small><b id="wind">-- km/h</b></div>
+        </div>
+        <div class="mini-stat">
+          <span>🌡️</span>
+          <div><small>Pressure</small><b id="pressure">-- hPa</b></div>
+        </div>
+        <div class="mini-stat">
+          <span>☀️</span>
+          <div><small>UV index</small><b id="uv">--</b></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FORECAST -->
+    <section class="section">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">PLAN AHEAD</p>
+          <h2>5-Day Forecast</h2>
+        </div>
+        <span class="section-icon">📅</span>
+      </div>
+      <div id="forecast" class="forecast-grid"></div>
+    </section>
+
+    <!-- HOURLY CHART -->
+    <section class="section">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">TEMPERATURE TRENDS</p>
+          <h2>Hourly Forecast</h2>
+        </div>
+        <span class="section-icon">📈</span>
+      </div>
+      <div class="chart-card">
+        <canvas id="weatherChart"></canvas>
+      </div>
+    </section>
+
+    <!-- AIR QUALITY -->
+    <section class="section">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">BREATHE SMARTER</p>
+          <h2>Air Quality Monitor</h2>
+        </div>
+        <span class="section-icon">🌿</span>
+      </div>
+
+      <div class="aqi-card">
+        <div class="aqi-main">
+          <small>European Air Quality Index</small>
+          <div class="aqi-number" id="aqiValue">--</div>
+          <h3 id="aqiLabel">Checking air quality...</h3>
+          <p id="aqiAdvice">Air quality information will appear here.</p>
+        </div>
+
+        <div class="pollutants">
+          <div><span>PM2.5</span><b id="pm25">--</b></div>
+          <div><span>PM10</span><b id="pm10">--</b></div>
+          <div><span>Ozone</span><b id="ozone">--</b></div>
+          <div><span>NO₂</span><b id="no2">--</b></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- MAP -->
+    <section class="section">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">EXPLORE YOUR SURROUNDINGS</p>
+          <h2>Interactive Weather Map</h2>
+        </div>
+        <span class="section-icon">🗺️</span>
+      </div>
+      <p class="muted map-help">
+        Click anywhere on the map to check weather at that location.
+      </p>
+      <div id="weatherMap"></div>
+    </section>
+
+    <footer>
+      <h3>☀️ WeatherWise</h3>
+      <p>Smart weather insights for a smarter tomorrow.</p>
+      <small>Weather data: Open-Meteo | Map: OpenStreetMap</small>
+    </footer>
+
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
